@@ -22,6 +22,12 @@ workflow BAM_VARIANT_CALLING_CNVKIT {
 
     CNVKIT_BATCH(cram, fasta, fasta_fai, targets, reference, generate_pon)
 
+    // right now we do not use an input VCF to improve the calling of B alleles
+    // based on SNV frequencies from the VCF file
+    // in the future we might consider to add this, by connecting the emission from
+    // SNV variant calling modules
+    CNVKIT_CALL(CNVKIT_BATCH.out.cns.map{ meta, cns -> [meta, cns, []]})
+
     ch_genemetrics = CNVKIT_BATCH.out.cnr.join(CNVKIT_BATCH.out.cns).map{ meta, cnr, cns -> [meta, cnr, cns[2]]}
     CNVKIT_GENEMETRICS(ch_genemetrics)
 
