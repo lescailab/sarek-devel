@@ -6,6 +6,7 @@
 
 include { CNVKIT_BATCH       } from '../../../modules/nf-core/cnvkit/batch/main'
 include { CNVKIT_CALL        } from '../../../modules/nf-core/cnvkit/call/main'
+include { CNVKIT_EXPORT      } from '../../../modules/nf-core/cnvkit/export/main'
 include { CNVKIT_GENEMETRICS } from '../../../modules/nf-core/cnvkit/genemetrics/main'
 
 workflow BAM_VARIANT_CALLING_CNVKIT {
