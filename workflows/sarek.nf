@@ -506,13 +506,13 @@ workflow SAREK {
 
         // STEP 1: MAPPING READS TO REFERENCE GENOME
         // First, we must calculate number of lanes for each sample (meta.n_fastq)
-        // This is needed to group reads from the same sample together using groupKey to avoid stalling the workflow 
+        // This is needed to group reads from the same sample together using groupKey to avoid stalling the workflow
         // when reads from different samples are mixed together
-        reads_for_alignment.map { meta, reads -> 
-                [ meta.subMap('patient', 'sample', 'sex', 'status'), reads ]   
+        reads_for_alignment.map { meta, reads ->
+                [ meta.subMap('patient', 'sample', 'sex', 'status'), reads ]
             }
             .groupTuple()
-            .map { meta, reads -> 
+            .map { meta, reads ->
                 meta + [ n_fastq: reads.size() ] // We can drop the FASTQ files now that we know how many there are
             }
             .set { reads_grouping_key }
@@ -971,6 +971,7 @@ workflow SAREK {
             params.skip_tools,
             cram_variant_calling_status_normal,
             [ [ id:'bwa' ], [] ], // bwa_index for tiddit; not used here
+            cnvkit_reference,
             dbsnp,
             dbsnp_tbi,
             dbsnp_vqsr,

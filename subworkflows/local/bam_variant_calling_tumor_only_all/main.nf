@@ -87,7 +87,7 @@ workflow BAM_VARIANT_CALLING_TUMOR_ONLY_ALL {
             cram.map{ meta, cram, crai -> [ meta, cram, [] ] },
             fasta.map{ it -> [[id:it[0].baseName], it] },
             fasta_fai.map{ it -> [[id:it[0].baseName], it] },
-            [[id:"null"], []],
+            intervals_bed_combined.map{ it -> [[id:it[0].baseName], it] },
             cnvkit_reference.map{ it -> [[id:it[0].baseName], it] }
         )
 
