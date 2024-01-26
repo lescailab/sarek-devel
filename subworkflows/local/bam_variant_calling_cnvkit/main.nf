@@ -29,6 +29,9 @@ workflow BAM_VARIANT_CALLING_CNVKIT {
     // SNV variant calling modules
     CNVKIT_CALL(CNVKIT_BATCH.out.cns.map{ meta, cns -> [meta, cns, []]})
 
+    // export to VCF for compatibility with other tools
+    CNVKIT_EXPORT(CNVKIT_CALL.out.cns)
+
     ch_genemetrics = CNVKIT_BATCH.out.cnr.join(CNVKIT_BATCH.out.cns).map{ meta, cnr, cns -> [meta, cnr, cns[2]]}
     CNVKIT_GENEMETRICS(ch_genemetrics)
 
