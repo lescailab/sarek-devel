@@ -82,7 +82,7 @@ workflow BAM_VARIANT_CALLING_GERMLINE_ALL {
 
     // CNVKIT
     if (tools.split(',').contains('cnvkit')) {
-        BAM_VARIANT_CALLING_CNVKIT(
+        BAM_VARIANT_CALLING_CNVKIT_GERMLINE(
             // Remap channel to match module/subworkflow
             cram.map{ meta, cram, crai -> [ meta, [], cram ] },
             fasta.map{ it -> [[id:it[0].baseName], it] },
