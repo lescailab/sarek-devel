@@ -90,7 +90,7 @@ workflow BAM_VARIANT_CALLING_GERMLINE_ALL {
             intervals_bed_combined.map{ it -> [[id:it[0].baseName], it] },
             cnvkit_reference.map{ it -> [[id:it[0].baseName], it] }
         )
-        versions = versions.mix(BAM_VARIANT_CALLING_CNVKIT.out.versions)
+        versions = versions.mix(BAM_VARIANT_CALLING_CNVKIT_GERMLINE.out.versions)
     }
 
     // DEEPVARIANT
