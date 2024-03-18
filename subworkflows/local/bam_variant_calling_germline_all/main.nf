@@ -81,6 +81,7 @@ workflow BAM_VARIANT_CALLING_GERMLINE_ALL {
     }
 
     // CNVKIT
+
     if (tools.split(',').contains('cnvkit')) {
         BAM_VARIANT_CALLING_CNVKIT_GERMLINE(
             // Remap channel to match module/subworkflow
@@ -88,7 +89,7 @@ workflow BAM_VARIANT_CALLING_GERMLINE_ALL {
             fasta.map{ it -> [[id:it[0].baseName], it] },
             fasta_fai.map{ it -> [[id:it[0].baseName], it] },
             intervals_bed_combined.map{ it -> [[id:it[0].baseName], it] },
-            {params.cnvkit_reference ? cnvkit_reference.map{ it -> [[id:it[0].baseName], it] }, ""}
+            params.cnvkit_reference ? cnvkit_reference.map{ it -> [[id:it[0].baseName], it] } : []
         )
         versions = versions.mix(BAM_VARIANT_CALLING_CNVKIT_GERMLINE.out.versions)
     }
