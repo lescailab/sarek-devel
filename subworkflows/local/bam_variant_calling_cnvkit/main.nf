@@ -29,7 +29,7 @@ workflow BAM_VARIANT_CALLING_CNVKIT {
     // SNV variant calling modules
     CNVKIT_CALL(
         CNVKIT_BATCH.out.cns.map{ meta, cns ->
-        converted_cns = cns.filter { it.contains('converted.cns')}
+        converted_cns = cns.findAll { it.contains('converted.cns')}
         [meta, converted_cns, []]}
         )
 
