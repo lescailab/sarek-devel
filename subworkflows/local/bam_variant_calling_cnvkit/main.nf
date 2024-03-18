@@ -27,7 +27,11 @@ workflow BAM_VARIANT_CALLING_CNVKIT {
     // based on SNV frequencies from the VCF file
     // in the future we might consider to add this, by connecting the emission from
     // SNV variant calling modules
-    CNVKIT_CALL(CNVKIT_BATCH.out.cns.map{ meta, cns -> [meta, cns, []]})
+    CNVKIT_CALL(
+        CNVKIT_BATCH.out.cns.map{ meta, cns ->
+        converted_cns = cns.filter { it.contains('converted.cns')}
+        [meta, converted_cns, []]}
+        )
 
     // export to VCF for compatibility with other tools
     CNVKIT_EXPORT(CNVKIT_CALL.out.cns)
