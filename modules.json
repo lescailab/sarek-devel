@@ -339,6 +339,11 @@
                         "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
                         "installed_by": ["bam_ngscheckmate"]
                     },
+                    "parabricks/applybqsr": {
+                        "branch": "master",
+                        "git_sha": "3e52a04aa60e0cb5cea0487b9ae2fdd04f874027",
+                        "installed_by": ["modules"]
+                    },
                     "samblaster": {
                         "branch": "master",
                         "git_sha": "3f5420aa22e00bd030a2556dfdffc9e164ec0ec5",
